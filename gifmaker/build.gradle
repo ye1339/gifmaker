@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+uploadArchives {
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+            repository(url: "file://localhost/C:/Users/MyMaven")
+            pom.project {
+                version 'gifmaker-1.0.0'
+                artifactId 'gifmaker'
+                groupId 'com.gifmaker.android'
+                packaging 'aar'
+                description 'gifmaker'
+            }
+        }
+    }
+}
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
